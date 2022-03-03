@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int numberOfArithmeticSlices(vector<int>& A) {
+        int numSlices = 0;
+        int count = 0;
+        for(int i = 0; i + 2 < A.size(); ++i)
+        {
+            if(A[i + 1] - A[i] == A[i + 2] - A[i + 1])
+            {
+                ++count;
+            }
+            else
+            {
+                numSlices += (count + 1) * count / 2;
+                count =  0;
+            }
+        }
+        numSlices += (count + 1) * count / 2;
+        return numSlices;
+    }
+};
