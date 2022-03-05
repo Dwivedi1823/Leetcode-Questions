@@ -1,0 +1,53 @@
+class Solution {
+public:
+    bool isValid(string s) 
+    {
+        if(s.size() % 2 != 0)
+            return false;
+        stack<char> st;
+        string para = "(){}[]";
+        for(int i = 0; i < s.size(); i++ )
+        {
+            if(para.find(s[i]) < para.size())
+            {
+                if(s[i] == '(' or s[i] == '{' or s[i] == '[')
+                    st.push(s[i]);
+                else
+                {
+                    if(st.empty())
+                        return false;
+                    else
+                    {
+                        if(s[i] == ')')
+                        {
+                            if( st.top() == '(')
+                                st.pop();
+                            else
+                                return false;
+                        }
+                        if(s[i] == '}')
+                        {
+                            if( st.top() == '{')
+                                st.pop();
+                            else
+                                return false;
+                        }
+                        if(s[i] == ']')
+                        {
+                            if( st.top() == '[')
+                                st.pop();
+                            else
+                                return false;
+                        }
+                    }
+                }
+            }
+            else
+                return false;
+        }
+        if(st.empty())
+            return true;
+        else
+            return false;
+    }
+};
