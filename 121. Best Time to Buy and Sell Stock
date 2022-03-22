@@ -1,0 +1,16 @@
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        int profit = 0, gross = 0, min_till_now = INT_MAX;
+        int n = prices.size();
+        
+        if(n <= 1)
+            return 0;
+        
+        for(int i = 0; i < n ; i++){
+            min_till_now = min(min_till_now, prices[i]);
+            profit = max(prices[i] - min_till_now, profit);
+        }
+        return profit;
+    }
+};
