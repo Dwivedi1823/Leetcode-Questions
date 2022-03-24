@@ -1,0 +1,50 @@
+class Solution {
+public:
+    bool isValidSudoku(vector<vector<char>>& board) {
+        
+        for(int i = 0; i < 9; ++i){
+            map<char, int> mp;
+            for(int j = 0 ; j < 9; ++j){
+                mp[board[i][j]]++;
+            }
+            for(auto x : mp){
+                if(x.first != '.' and x.second >= 2){
+                    return false;
+                }
+            }
+        }
+        
+        for(int i = 0; i < 9; ++i){
+            map<char, int> mp;
+            for(int j = 0 ; j < 9; ++j){
+                mp[board[j][i]]++;
+            }
+            for(auto x : mp){
+                if(x.first != '.' and x.second >= 2){
+                    return false;
+                }
+            }
+        }
+        
+        
+        for(int i = 0; i < 9 ; i = i + 3){
+            for(int j = 0; j < 9; j = j + 3){
+                    map<char, int> mp1;
+                    for(int k = i; k < i + 3; ++k){
+                        for(int m = j; m < j + 3; ++m){
+                            mp1[board[k][m]]++;
+                        }
+                    }
+                    for(auto x : mp1){
+                        if(x.first != '.' and x.second >= 2){
+                             return false;
+                        }
+                }
+            }
+        }
+        
+        
+        return true;
+        
+    }
+};
