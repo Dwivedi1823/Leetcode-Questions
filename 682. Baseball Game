@@ -1,0 +1,28 @@
+class Solution {
+public:
+    int calPoints(vector<string>& arr) {
+        int n = arr.size();
+        if(n == 1)
+            return stoi(arr[0]);
+        
+        vector<int> v;
+        
+        for(int i = 0; i < n; ++i){
+            if(arr[i] == "D")
+                v.push_back((v[v.size()-1] + v[v.size()-1]));
+            else if(arr[i] == "+")
+                v.push_back((v[v.size()-1] + v[v.size()-2]));
+            else if(arr[i] == "C")
+                v.pop_back();
+            else{
+                int num = atoi(arr.at(i).c_str());
+                v.push_back(num);
+            }
+        }
+        
+        int sum = 0;
+        for(auto p : v)
+            sum += p;
+        return sum;
+    }
+};
